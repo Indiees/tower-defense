@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private bool isPlay;
     private bool isPause;
     [HideInInspector]public bool isGameOver;
+    [HideInInspector]public bool isWin;
 
     private void Awake() {
         if(ins != null && ins != this)
@@ -88,6 +89,14 @@ public class GameManager : MonoBehaviour
 
     private void PlayAgain(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void WinGame(){
+        isWin = true;
+        titleMenuText.text = "YOU WIN";
+        selectTurretPanel.SetActive(false);
+        playAgainButton.gameObject.SetActive(true);
+        menuPanel.SetActive(true);
     }
 
     private void Exit(){

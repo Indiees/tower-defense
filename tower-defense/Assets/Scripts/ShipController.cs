@@ -30,6 +30,7 @@ public class ShipController : MonoBehaviour, IDamagable
     }
 
     private void Die(){
+        ShipsManager.ins.CheckEnemiesToWin();
         AudioManager.ins.PlayClip(dieClip);
         Instantiate(dieParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);

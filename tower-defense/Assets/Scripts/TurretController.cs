@@ -31,6 +31,7 @@ public class TurretController : MonoBehaviour
     }
 
     private void Update() {
+        if(GameManager.ins.isGameOver || GameManager.ins.isWin) return;
         Collider[] enemies = Physics.OverlapSphere(transform.position, rangeToAttack, enemyLayer);
         if(enemies.Length > 0){
             target = enemies[0].gameObject.transform; 

@@ -16,10 +16,20 @@ public class ShipsManager : MonoBehaviour{
     public float intervalBetweenWaves = 10;
     public float counterToNewWave = 0;
     private bool canStartTimer;
+    public int totalEnemiesToKill;
+    public int totalEnemiesKilled;
 
     private void Awake() {
         if(ins != null && ins != this) Destroy(this.gameObject);
         else ins = this;
+
+        for (int i = 0; i < enemyWaves.Count; i++)
+        {
+            for (int j = 0; j < enemyWaves[i].enemies.Length; j++)
+            {
+                totalEnemiesToKill ++;
+            }
+        }
     }
 
     private void Update() {
@@ -30,6 +40,12 @@ public class ShipsManager : MonoBehaviour{
                 counterToNewWave = 0;
             }  
         }
+    }
+
+    public void CheckEnemiesToWin(){
+        totalEnemiesKilled ++;
+        if(totalEnemiesKilled == totalEnemiesToKill)
+            GameManager.ins.WinGame();
     }
 
     public void SelectWave(){
